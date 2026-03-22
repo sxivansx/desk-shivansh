@@ -94,6 +94,8 @@ export const PORTFOLIO_CONTENT = {
     years: "2023–2027",
   },
   skills: {
+    frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
+    devTools: ["Git", "GitHub", "Vercel", "MongoDB", "Docker", "Postman", "Firebase"],
     design: ["Brand Design", "UI/UX Design", "Product Design", "Graphic Design"],
     tools: ["Figma", "Framer", "Illustrator", "Photoshop", "Premiere Pro", "After Effects", "InDesign", "Blender"],
     interests: ["Visual Identity", "Design Systems", "Motion Design", "3D Rendering"],
