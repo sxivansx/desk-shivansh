@@ -56,20 +56,23 @@ export const PORTFOLIO_CONTENT = {
   experience: [
     {
       company: "Remotestar",
-      role: "Product Designer",
+      role: "Product Designer & Frontend Dev",
       highlights: [
-        "Improved UX and UI across apps, enhancing clarity, user flow, and experience.",
-        "Rebranded the company with a new logo and wordmark.",
-        "Designed and developed Remotestar's landing page in Framer with CMS integration.",
+        "Redesigned the logo and led the complete rebranding of Remotestar's visual identity.",
+        "Designed and built a new landing page from scratch in Framer — handling both design and code implementation.",
+        "Overhauled the candidate platform's UI/UX and entire user flow, and contributed to the frontend codebase.",
+        "Revamped the recruiter platform's UX for improved usability and workflow.",
+        "Created marketing collateral and other brand assets to support growth initiatives.",
       ],
     },
     {
       company: "Prauga",
       role: "Product & UI/UX Designer",
       highlights: [
-        "Designed the launcher + full system UI for Prauga OS.",
-        "Built complete brand identity: logo, typography, visual language.",
-        "Designed and built the official Prauga website in Framer.",
+        "Designed the launcher and full system UI for Pvot OS.",
+        "Created UI/UX for multiple Pvot apps, ensuring a cohesive experience across the ecosystem.",
+        "Built the complete brand identity from scratch — logo, typography, and visual language.",
+        "Designed and developed the official Prauga and Pvot websites in Framer.",
       ],
     },
     {
@@ -95,7 +98,7 @@ export const PORTFOLIO_CONTENT = {
   },
   skills: {
     frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
-    devTools: ["Git", "GitHub", "Vercel", "MongoDB", "Docker", "Postman", "Firebase"],
+    devTools: ["Git", "GitHub", "Vercel", "MongoDB", /* "Docker", */ "Postman", "Firebase"],
     design: ["Brand Design", "UI/UX Design", "Product Design", "Graphic Design"],
     tools: ["Figma", "Framer", "Illustrator", "Photoshop", "Premiere Pro", "After Effects", "InDesign", "Blender"],
     interests: ["Visual Identity", "Design Systems", "Motion Design", "3D Rendering"],

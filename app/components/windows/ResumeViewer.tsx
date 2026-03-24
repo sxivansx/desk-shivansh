@@ -140,7 +140,7 @@ function ResumeContent() {
               <span style={{ fontWeight: 600, fontSize: 12 }}>{exp.company}</span>
               <span style={{ fontSize: 10.5, color: '#666' }}>{exp.role}</span>
             </div>
-            <ul style={{ margin: '3px 0 0', paddingLeft: 16 }}>
+            <ul style={{ margin: '3px 0 0', paddingLeft: 16, listStyleType: 'disc' }}>
               {exp.highlights.map((h, i) => (
                 <li key={i} style={{ fontSize: 11, color: '#444', marginBottom: 1.5 }}>{h}</li>
               ))}
@@ -157,7 +157,7 @@ function ResumeContent() {
               <span style={{ fontWeight: 600, fontSize: 12 }}>{proj.name}</span>
               <span style={{ fontSize: 10.5, color: '#666' }}>{proj.role}</span>
             </div>
-            <ul style={{ margin: '3px 0 0', paddingLeft: 16 }}>
+            <ul style={{ margin: '3px 0 0', paddingLeft: 16, listStyleType: 'disc' }}>
               {proj.highlights.map((h, i) => (
                 <li key={i} style={{ fontSize: 11, color: '#444', marginBottom: 1.5 }}>{h}</li>
               ))}
