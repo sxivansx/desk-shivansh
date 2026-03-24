@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { PORTFOLIO_CONTENT } from '../../content'
 
 const EXP_LOGOS: Record<string, string> = {
@@ -30,12 +30,16 @@ const SKILL_ICONS: Record<string, string> = {
   'Postman': '/yosemite-icons/skills/postman.png',
   'Firebase': '/yosemite-icons/skills/firebase.png',
   'MongoDB': '/yosemite-icons/skills/mongodb.png',
-  'Docker': '/yosemite-icons/skills/docker.png',
+  // 'Docker': '/yosemite-icons/skills/docker.png',
 }
 
 export default function AboutWindow() {
   const { name, role, bio, education, coCurricular, skills, experience } = PORTFOLIO_CONTENT
   const [activeTab, setActiveTab] = useState('Overview')
+  const [expandedExp, setExpandedExp] = useState<string | null>(null)
+  const toggleExp = useCallback((company: string) => {
+    setExpandedExp(prev => prev === company ? null : company)
+  }, [])
 
   return (
     <div style={{
@@ -83,19 +87,18 @@ export default function AboutWindow() {
         {activeTab === 'Overview' && (
           <div style={{ display: 'flex', padding: '24px 28px', gap: 20 }}>
             {/* Left Icon */}
-            <div style={{
-              width: 80,
-              height: 80,
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #007AFF, #5856d6)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-              boxShadow: '0 3px 12px rgba(0, 122, 255, 0.2)',
-            }}>
-              <span style={{ fontSize: 32, fontWeight: 300, color: '#fff' }}>{name[0]}</span>
-            </div>
+            <img
+              src="/shivansh.jpeg"
+              alt={name}
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                flexShrink: 0,
+                boxShadow: '0 3px 12px rgba(0, 0, 0, 0.15)',
+              }}
+            />
 
             {/* Right Info */}
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
@@ -192,21 +195,39 @@ export default function AboutWindow() {
         {activeTab === 'Experience' && (
           <div style={{ padding: '20px 28px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {experience.map((exp: { company: string; role: string }) => (
-                <div key={exp.company} style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#f8f8f8', padding: '10px 12px', borderRadius: 8, border: '1px solid #e5e5e5' }}>
-                  {EXP_LOGOS[exp.company] ? (
-                    <img src={EXP_LOGOS[exp.company]} alt={exp.company} style={{ width: 32, height: 32, borderRadius: 6, objectFit: 'contain' }} />
-                  ) : (
-                    <div style={{ width: 32, height: 32, borderRadius: 6, background: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 14, fontWeight: 600 }}>
-                      {exp.company[0]}
+              {experience.map((exp: { company: string; role: string; highlights: string[] }) => {
+                const isOpen = expandedExp === exp.company
+                return (
+                  <div key={exp.company} style={{ background: '#f8f8f8', borderRadius: 8, border: '1px solid #e5e5e5', overflow: 'hidden' }}>
+                    <div
+                      onClick={() => toggleExp(exp.company)}
+                      style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', cursor: 'pointer' }}
+                    >
+                      {EXP_LOGOS[exp.company] ? (
+                        <img src={EXP_LOGOS[exp.company]} alt={exp.company} style={{ width: 32, height: 32, borderRadius: 6, objectFit: 'contain' }} />
+                      ) : (
+                        <div style={{ width: 32, height: 32, borderRadius: 6, background: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 14, fontWeight: 600 }}>
+                          {exp.company[0]}
+                        </div>
+                      )}
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: '#333' }}>{exp.company}</div>
+                        <div style={{ fontSize: 10, color: '#666' }}>{exp.role}</div>
+                      </div>
+                      <span style={{ fontSize: 10, color: '#999', transition: 'transform 0.2s', transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}>&#9654;</span>
                     </div>
-                  )}
-                  <div>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: '#333' }}>{exp.company}</div>
-                    <div style={{ fontSize: 10, color: '#666' }}>{exp.role}</div>
+                    {isOpen && exp.highlights.length > 0 && (
+                      <div style={{ padding: '0 12px 10px 56px' }}>
+                        <ul style={{ margin: 0, paddingLeft: 14, fontSize: 11, lineHeight: 1.7, color: '#555', listStyleType: 'disc' }}>
+                          {exp.highlights.map((h: string, i: number) => (
+                            <li key={i} style={{ marginBottom: 2 }}>{h}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         )}
