@@ -21,7 +21,7 @@ import { useWindowManager } from './hooks/useWindowManager'
 const CONFIGS = {
   about:    { defaultPosition: { x: 80,  y: 40  }, defaultSize: { w: 480, h: 560 } },
   projects: { defaultPosition: { x: 180, y: 50  }, defaultSize: { w: 540, h: 500 } },
-  contact:  { defaultPosition: { x: 140, y: 80  }, defaultSize: { w: 380, h: 420 } },
+  contact:  { defaultPosition: { x: 140, y: 80  }, defaultSize: { w: 760, h: 420 } },
   spotify:  { defaultPosition: { x: 520, y: 50  }, defaultSize: { w: 300, h: 380 } },
   resume:   { defaultPosition: { x: 160, y: 50  }, defaultSize: { w: 560, h: 560 } },
   video:    { defaultPosition: { x: 240, y: 60  }, defaultSize: { w: 480, h: 380 } },
@@ -44,7 +44,7 @@ const APP_NAMES: Record<string, string> = {
 const DOCK_APPS: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
   {
     key: 'about', id: 'about', label: 'About Me',
-    icon: <img src="/yosemite-icons/Contacts.png" alt="About Me" style={{ width: 46, height: 46 }} />,
+    icon: <img src="/yosemite-icons/PrefApp.png" alt="About Me" style={{ width: 46, height: 46 }} />,
   },
   {
     key: 'projects', id: 'projects', label: 'Projects',
@@ -52,7 +52,7 @@ const DOCK_APPS: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
   },
   {
     key: 'contact', id: 'contact', label: 'Contact',
-    icon: <img src="/yosemite-icons/Messages.png" alt="Contact" style={{ width: 46, height: 46 }} />,
+    icon: <img src="/yosemite-icons/Contacts.png" alt="Contact" style={{ width: 46, height: 46 }} />,
   },
   {
     key: 'facetime', id: 'facetime', label: 'FaceTime',

@@ -3,12 +3,45 @@
 import { useState } from 'react'
 import { PORTFOLIO_CONTENT } from '../../content'
 
+const CONTACTS = [
+  {
+    id: 'shivansh',
+    name: PORTFOLIO_CONTENT.name,
+    role: PORTFOLIO_CONTENT.role,
+    rows: [
+      { label: 'email', value: PORTFOLIO_CONTENT.contact.email, href: `mailto:${PORTFOLIO_CONTENT.contact.email}` },
+      { label: 'behance', value: PORTFOLIO_CONTENT.contact.behance, href: `https://${PORTFOLIO_CONTENT.contact.behance}` },
+      { label: 'linkedin', value: PORTFOLIO_CONTENT.contact.linkedin, href: `https://${PORTFOLIO_CONTENT.contact.linkedin}` },
+      { label: 'twitter', value: PORTFOLIO_CONTENT.contact.twitter, href: `https://twitter.com/${PORTFOLIO_CONTENT.contact.twitter.replace('@', '')}` },
+      { label: 'instagram', value: PORTFOLIO_CONTENT.contact.instagram, href: `https://${PORTFOLIO_CONTENT.contact.instagram}` },
+      { label: 'github', value: '@sxivansx', href: 'https://github.com/sxivansx' },
+    ],
+    actions: [
+      { label: 'Book a Call', href: PORTFOLIO_CONTENT.contact.cal, primary: true },
+      { label: 'Download CV', href: PORTFOLIO_CONTENT.contact.cv },
+    ],
+    color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+  },
+  {
+    id: 'govind',
+    name: 'Govind',
+    role: 'DevOps & Backend Engineer',
+    rows: [
+      { label: 'twitter', value: '@govindup63', href: 'https://twitter.com/govindup63' },
+      { label: 'github', value: '@govindup63', href: 'https://github.com/govindup63' },
+    ],
+    actions: [],
+    color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  },
+]
+
 export default function ContactWindow() {
-  const { contact, name, role } = PORTFOLIO_CONTENT
+  const [selected, setSelected] = useState('shivansh')
+  const contact = CONTACTS.find(c => c.id === selected) ?? CONTACTS[0]
 
   return (
     <div style={{ display: 'flex', height: '100%', background: '#ffffff' }}>
-      {/* Sidebar (List of contacts) */}
+      {/* Sidebar */}
       <div style={{
         width: 140,
         flexShrink: 0,
@@ -28,21 +61,34 @@ export default function ContactWindow() {
           }} />
         </div>
         <div style={{ flex: 1, overflowY: 'auto' }}>
-          <div style={{
-            padding: '6px 10px',
-            background: '#007AFF',
-            color: '#fff',
-            fontSize: 11,
-            fontWeight: 500,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-          }}>
-            <div style={{ width: 22, height: 22, borderRadius: '50%', background: '#fff', color: '#007AFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 600, flexShrink: 0 }}>
-              {name[0]}
+          {CONTACTS.map(c => (
+            <div
+              key={c.id}
+              onClick={() => setSelected(c.id)}
+              style={{
+                padding: '6px 10px',
+                background: selected === c.id ? '#007AFF' : 'transparent',
+                color: selected === c.id ? '#fff' : '#333',
+                fontSize: 11,
+                fontWeight: 500,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                cursor: 'pointer',
+              }}
+            >
+              <div style={{
+                width: 22, height: 22, borderRadius: '50%',
+                background: selected === c.id ? '#fff' : '#e0e0e0',
+                color: selected === c.id ? '#007AFF' : '#666',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 9, fontWeight: 600, flexShrink: 0,
+              }}>
+                {c.name[0]}
+              </div>
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.name}</span>
             </div>
-            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -51,45 +97,40 @@ export default function ContactWindow() {
         {/* Header */}
         <div style={{ display: 'flex', gap: 14, marginBottom: 20, alignItems: 'center' }}>
           <div style={{
-            width: 56,
-            height: 56,
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 22,
-            fontWeight: 300,
-            color: '#fff',
-            flexShrink: 0,
+            width: 56, height: 56, borderRadius: '50%',
+            background: contact.color,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 22, fontWeight: 300, color: '#fff', flexShrink: 0,
           }}>
-            {name[0]}
+            {contact.name[0]}
           </div>
           <div>
             <h2 style={{ fontSize: 18, fontWeight: 400, color: '#333', margin: '0 0 2px 0' }}>
-              {name}
+              {contact.name}
             </h2>
             <p style={{ fontSize: 11, color: '#888', margin: 0 }}>
-              {role}
+              {contact.role}
             </p>
           </div>
         </div>
 
         {/* Contact rows */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-          <ContactRow label="email" value={contact.email} href={`mailto:${contact.email}`} />
-          <ContactRow label="behance" value={contact.behance} href={`https://${contact.behance}`} />
-          <ContactRow label="linkedin" value={contact.linkedin} href={`https://${contact.linkedin}`} />
-          <ContactRow label="twitter" value={contact.twitter} href={`https://twitter.com/${contact.twitter.replace('@', '')}`} />
-          <ContactRow label="instagram" value={contact.instagram} href={`https://${contact.instagram}`} />
+          {contact.rows.map(row => (
+            <ContactRow key={row.label} label={row.label} value={row.value} href={row.href} />
+          ))}
         </div>
 
-        <div style={{ height: 1, background: '#eee', margin: '16px 0' }} />
-
-        <div style={{ display: 'flex', gap: 10 }}>
-          <ActionButton label="Book a Call" href={contact.cal} primary />
-          <ActionButton label="Download CV" href={contact.cv} />
-        </div>
+        {contact.actions.length > 0 && (
+          <>
+            <div style={{ height: 1, background: '#eee', margin: '16px 0' }} />
+            <div style={{ display: 'flex', gap: 10 }}>
+              {contact.actions.map(a => (
+                <ActionButton key={a.label} label={a.label} href={a.href} primary={a.primary} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
