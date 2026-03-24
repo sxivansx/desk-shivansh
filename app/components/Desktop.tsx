@@ -14,6 +14,7 @@ import ResumeViewer from './windows/ResumeViewer'
 import SpotifyWidget from './windows/SpotifyWidget'
 import VideoPlayer from './windows/VideoPlayer'
 import YouTubePlayer from './windows/YouTubePlayer'
+import CalendarWindow from './windows/CalendarWindow'
 import { useRetroSound } from './hooks/useRetroSound'
 import { useWindowManager } from './hooks/useWindowManager'
 
@@ -27,6 +28,7 @@ const CONFIGS = {
   video:    { defaultPosition: { x: 240, y: 60  }, defaultSize: { w: 480, h: 380 } },
   facetime: { defaultPosition: { x: 200, y: 100 }, defaultSize: { w: 600, h: 400 } },
   zenith:   { defaultPosition: { x: 140, y: 40  }, defaultSize: { w: 680, h: 460 } },
+  calendar: { defaultPosition: { x: 220, y: 60  }, defaultSize: { w: 700, h: 500 } },
 }
 
 /* ── Window-to-app-name mapping ──────────────────────────── */
@@ -39,6 +41,7 @@ const APP_NAMES: Record<string, string> = {
   video: 'QuickTime Player',
   facetime: 'FaceTime',
   zenith: 'QuickTime Player',
+  calendar: 'Calendar',
 }
 
 const DOCK_APPS: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
@@ -55,6 +58,10 @@ const DOCK_APPS: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
     icon: <img src="/yosemite-icons/Contacts.png" alt="Contact" style={{ width: 46, height: 46 }} />,
   },
   {
+    key: 'calendar', id: 'calendar', label: 'Calendar',
+    icon: <img src="/yosemite-icons/App.png" alt="Calendar" style={{ width: 46, height: 46 }} />,
+  },
+  {
     key: 'facetime', id: 'facetime', label: 'FaceTime',
     icon: <img src="/yosemite-icons/AppIcon.png" alt="FaceTime" style={{ width: 46, height: 46 }} />,
   },
@@ -64,12 +71,7 @@ const DOCK_APPS: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
   },
 ]
 
-const DOCK_FILES: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
-  {
-    key: 'video', id: 'video', label: 'Work Demo.mov',
-    icon: <img src="/yosemite-icons/MovieFolderIcon.png" alt="Video" style={{ width: 46, height: 46 }} />,
-  },
-]
+const DOCK_FILES: (Omit<DockEntry, 'isOpen'> & { key: string })[] = []
 
 /* ── Desktop ─────────────────────────────────────────────── */
 export default function Desktop() {
@@ -265,6 +267,7 @@ export default function Desktop() {
             <Window {...wp('resume')}><ResumeViewer /></Window>
             <Window {...wp('video')}><VideoPlayer filename="work_demo.mov" /></Window>
             <Window {...wp('zenith')}><YouTubePlayer videoId="gp_9BBiFmyQ" filename="zenith.mov" /></Window>
+            <Window {...wp('calendar')}><CalendarWindow /></Window>
           </div>
 
           {contextMenu && (
