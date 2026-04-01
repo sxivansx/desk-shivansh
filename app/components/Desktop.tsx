@@ -24,7 +24,7 @@ const CONFIGS = {
   about:    { defaultPosition: { x: 80,  y: 40  }, defaultSize: { w: 480, h: 560 } },
   projects: { defaultPosition: { x: 180, y: 50  }, defaultSize: { w: 540, h: 500 } },
   contact:  { defaultPosition: { x: 140, y: 80  }, defaultSize: { w: 760, h: 420 } },
-  spotify:  { defaultPosition: { x: 520, y: 50  }, defaultSize: { w: 300, h: 380 } },
+  spotify:  { defaultPosition: { x: 520, y: 50  }, defaultSize: { w: 280, h: 360 } },
   resume:   { defaultPosition: { x: 160, y: 50  }, defaultSize: { w: 560, h: 560 } },
   video:    { defaultPosition: { x: 240, y: 60  }, defaultSize: { w: 480, h: 380 } },
   facetime: { defaultPosition: { x: 200, y: 100 }, defaultSize: { w: 600, h: 400 } },
