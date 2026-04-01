@@ -15,6 +15,7 @@ import SpotifyWidget from './windows/SpotifyWidget'
 import VideoPlayer from './windows/VideoPlayer'
 import YouTubePlayer from './windows/YouTubePlayer'
 import CalendarWindow from './windows/CalendarWindow'
+import TerminalWindow from './windows/TerminalWindow'
 import { useRetroSound } from './hooks/useRetroSound'
 import { useWindowManager } from './hooks/useWindowManager'
 
@@ -29,6 +30,7 @@ const CONFIGS = {
   facetime: { defaultPosition: { x: 200, y: 100 }, defaultSize: { w: 600, h: 400 } },
   zenith:   { defaultPosition: { x: 140, y: 40  }, defaultSize: { w: 680, h: 460 } },
   calendar: { defaultPosition: { x: 220, y: 60  }, defaultSize: { w: 700, h: 500 } },
+  terminal: { defaultPosition: { x: 160, y: 60  }, defaultSize: { w: 600, h: 420 } },
 }
 
 /* ── Window-to-app-name mapping ──────────────────────────── */
@@ -42,6 +44,7 @@ const APP_NAMES: Record<string, string> = {
   facetime: 'FaceTime',
   zenith: 'QuickTime Player',
   calendar: 'Calendar',
+  terminal: 'Terminal',
 }
 
 const DOCK_APPS: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
@@ -64,6 +67,10 @@ const DOCK_APPS: (Omit<DockEntry, 'isOpen'> & { key: string })[] = [
   {
     key: 'facetime', id: 'facetime', label: 'FaceTime',
     icon: <img src="/yosemite-icons/AppIcon.png" alt="FaceTime" style={{ width: 46, height: 46 }} />,
+  },
+  {
+    key: 'terminal', id: 'terminal', label: 'Terminal',
+    icon: <img src="/yosemite-icons/Terminal.png" alt="Terminal" style={{ width: 46, height: 46 }} />,
   },
   {
     key: 'spotify', id: 'spotify', label: 'Spotify',
@@ -268,6 +275,7 @@ export default function Desktop() {
             <Window {...wp('video')}><VideoPlayer filename="work_demo.mov" /></Window>
             <Window {...wp('zenith')}><YouTubePlayer videoId="gp_9BBiFmyQ" filename="zenith.mov" /></Window>
             <Window {...wp('calendar')}><CalendarWindow /></Window>
+            <Window {...wp('terminal')}><TerminalWindow onOpenWindow={open} /></Window>
           </div>
 
           {contextMenu && (

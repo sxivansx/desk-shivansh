@@ -98,7 +98,7 @@ export const PORTFOLIO_CONTENT = {
   },
   skills: {
     frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
-    devTools: ["Git", "GitHub", "Vercel", "MongoDB", /* "Docker", */ "Postman", "Firebase"],
+    devTools: ["Git", "GitHub", "Vercel", "MongoDB", "Docker", "Postman", "Firebase"],
     design: ["Brand Design", "UI/UX Design", "Product Design", "Graphic Design"],
     tools: ["Figma", "Framer", "Illustrator", "Photoshop", "Premiere Pro", "After Effects", "InDesign", "Blender"],
     interests: ["Visual Identity", "Design Systems", "Motion Design", "3D Rendering"],
@@ -162,6 +162,20 @@ export const PORTFOLIO_CONTENT = {
       },
     ],
   },
+  codingProjects: [
+    {
+      name: "portfolio2026",
+      description: "This very site — a macOS Yosemite-themed interactive portfolio built from scratch.",
+      tech: ["Next.js", "React 19", "TypeScript", "Tailwind CSS", "Tone.js"],
+      repo: "https://github.com/sxivansx/portfolio2026",
+    },
+    {
+      name: "remotestar-landing",
+      description: "Designed and built the Remotestar landing page in Framer with custom interactions.",
+      tech: ["Framer", "React", "CSS"],
+      repo: "",
+    },
+  ],
   contact: {
     email: "sxivansx@duck.com",
     behance: "behance.net/sxivansx",
