@@ -30,7 +30,7 @@ const SKILL_ICONS: Record<string, string> = {
   'Postman': '/yosemite-icons/skills/postman.png',
   'Firebase': '/yosemite-icons/skills/firebase.png',
   'MongoDB': '/yosemite-icons/skills/mongodb.png',
-  // 'Docker': '/yosemite-icons/skills/docker.png',
+  'Docker': '/yosemite-icons/skills/docker.png',
 }
 
 export default function AboutWindow() {
