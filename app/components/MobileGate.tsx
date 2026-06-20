@@ -195,7 +195,7 @@ export default function MobileGate() {
                   animation: 'fadeIn 1s ease-out 0.5s both',
                 }}
               >
-                shivansh.life works best on desktop
+                desk.shivansh works best on desktop
               </div>
             </div>
           )}

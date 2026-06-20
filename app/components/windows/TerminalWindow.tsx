@@ -20,7 +20,7 @@ const c = PORTFOLIO_CONTENT
 const WELCOME: Line[] = [
   { type: 'output', text: 'Last login: Tue Apr  1 09:42:17 on ttys001' },
   { type: 'output', text: '' },
-  { type: 'output', text: 'Welcome to shivansh.life — type \x1b[1mhelp\x1b[0m to get started.' },
+  { type: 'output', text: 'Welcome to desk.shivansh — type \x1b[1mhelp\x1b[0m to get started.' },
   { type: 'output', text: '' },
 ]
 
@@ -235,7 +235,7 @@ function execute(raw: string, onOpenWindow?: (id: string) => void): Line[] {
     const info = [
       `\x1b[1mshivansh\x1b[0m@\x1b[1mmacbook\x1b[0m`,
       '─────────────────',
-      `\x1b[1mOS:\x1b[0m shivansh.life (macOS Yosemite)`,
+      `\x1b[1mOS:\x1b[0m desk.shivansh (macOS Yosemite)`,
       `\x1b[1mRole:\x1b[0m ${c.role}`,
       `\x1b[1mLocation:\x1b[0m Bengaluru, India`,
       `\x1b[1mShell:\x1b[0m zsh 5.9`,
