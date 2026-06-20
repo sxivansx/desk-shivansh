@@ -1,4 +1,4 @@
-# Project-Specific Instructions: shivansh.life
+# Project-Specific Instructions: desk.shivansh
 
 ## UI & Theming (macOS Yosemite Retro Style)
 - **Theme**: This project strictly follows the macOS OS X Yosemite (10.10) design language.

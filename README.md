@@ -1,4 +1,4 @@
-# shivansh.life
+# desk.shivansh
 
 A personal portfolio website built as a fully interactive macOS Yosemite desktop environment. It features a boot sequence, draggable windows, a dock, a menu bar, and retro UI sounds — all running in the browser.
 

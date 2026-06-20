@@ -29,7 +29,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio2026
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/desk.shivansh
           tags: |
             type=sha,prefix=sha-
             type=raw,value=latest
@@ -56,12 +56,12 @@ jobs:
           username: ${{ secrets.DO_USERNAME }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/portfolio2026:latest
-            docker stop portfolio2026 || true
-            docker rm portfolio2026 || true
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/desk.shivansh:latest
+            docker stop desk.shivansh || true
+            docker rm desk.shivansh || true
             docker run -d \
-              --name portfolio2026 \
+              --name desk.shivansh \
               --restart unless-stopped \
               -p 3000:3000 \
-              ${{ secrets.DOCKERHUB_USERNAME }}/portfolio2026:latest
+              ${{ secrets.DOCKERHUB_USERNAME }}/desk.shivansh:latest
             docker image prune -f

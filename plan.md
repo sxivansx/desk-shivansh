@@ -1,4 +1,4 @@
-# shivansh.life — Project Plan
+# desk.shivansh — Project Plan
 
 ## Feature Roadmap
 
@@ -73,7 +73,7 @@ Small, glanceable pieces that live on the desktop or in a Dashboard/Notification
 
 ---
 
-# Deploy shivansh.life to DigitalOcean
+# Deploy desk.shivansh to DigitalOcean
 
 ## Phase 1: Simple Deployment (Manual)
 
@@ -201,7 +201,7 @@ ssh deploy@YOUR_DROPLET_IP
 cd /opt/portfolio
 
 # Clone your repo
-git clone https://github.com/YOUR_USER/portfolio2026.git .
+git clone https://github.com/YOUR_USER/desk.shivansh.git .
 
 # Create .env file with your Spotify credentials
 nano .env
@@ -212,7 +212,7 @@ Add to .env:
 SPOTIFY_CLIENT_ID=your_id
 SPOTIFY_CLIENT_SECRET=your_secret
 SPOTIFY_REFRESH_TOKEN=your_token
-SPOTIFY_REDIRECT_URI=https://shivansh.life/api/spotify/callback
+SPOTIFY_REDIRECT_URI=https://desk.shivansh.life/api/spotify/callback
 ```
 
 Build and run:
@@ -259,14 +259,14 @@ docker compose logs  # check for errors
 
 Switch back to root (need sudo for nginx config):
 ```bash
-sudo nano /etc/nginx/sites-available/shivansh.life
+sudo nano /etc/nginx/sites-available/desk.shivansh.life
 ```
 
 Paste this:
 ```nginx
 server {
     listen 80;
-    server_name shivansh.life www.shivansh.life;
+    server_name desk.shivansh.life www.desk.shivansh.life;
 
     location / {
         proxy_pass http://127.0.0.1:3000;
@@ -301,7 +301,7 @@ server {
 
 Enable the site:
 ```bash
-sudo ln -s /etc/nginx/sites-available/shivansh.life /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/desk.shivansh.life /etc/nginx/sites-enabled/
 sudo rm /etc/nginx/sites-enabled/default   # remove default site
 sudo nginx -t                               # test config (should say "ok")
 sudo systemctl reload nginx
@@ -313,12 +313,12 @@ Test: Visit `http://YOUR_DROPLET_IP` in browser — should see your site.
 
 ### Step 6: Point Your Domain
 
-In your domain registrar (wherever you bought shivansh.life):
+In your domain registrar (wherever you bought desk.shivansh.life):
 1. **A record**: `@` → `YOUR_DROPLET_IP`
 2. **A record**: `www` → `YOUR_DROPLET_IP`
 3. Set TTL to 300 (5 min) for faster propagation
 
-Wait a few minutes, then test: `http://shivansh.life` should load your site.
+Wait a few minutes, then test: `http://desk.shivansh.life` should load your site.
 
 ---
 
@@ -326,7 +326,7 @@ Wait a few minutes, then test: `http://shivansh.life` should load your site.
 
 Once DNS is pointing to your droplet:
 ```bash
-sudo certbot --nginx -d shivansh.life -d www.shivansh.life
+sudo certbot --nginx -d desk.shivansh.life -d www.desk.shivansh.life
 ```
 
 Certbot will:
@@ -334,21 +334,21 @@ Certbot will:
 - Auto-modify your Nginx config to handle HTTPS
 - Set up auto-renewal (certs expire every 90 days, renewal is automatic)
 
-Test: `https://shivansh.life` should work with a padlock icon.
+Test: `https://desk.shivansh.life` should work with a padlock icon.
 
 ---
 
 ### Step 8: Update Spotify Redirect URI
 
 Go to https://developer.spotify.com/dashboard → your app → Edit Settings:
-- Add `https://shivansh.life/api/spotify/callback` to Redirect URIs
+- Add `https://desk.shivansh.life/api/spotify/callback` to Redirect URIs
 
 ---
 
 ### Step 9: Verify Everything
 
-- [ ] `https://shivansh.life` loads the macOS Yosemite desktop
-- [ ] `http://shivansh.life` redirects to HTTPS
+- [ ] `https://desk.shivansh.life` loads the macOS Yosemite desktop
+- [ ] `http://desk.shivansh.life` redirects to HTTPS
 - [ ] Spotify widget shows your currently playing track
 - [ ] All Yosemite icons load
 - [ ] Sound effects work (Tone.js)
