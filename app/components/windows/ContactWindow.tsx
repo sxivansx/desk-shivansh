@@ -12,7 +12,7 @@ const CONTACTS = [
       { label: 'email', value: PORTFOLIO_CONTENT.contact.email, href: `mailto:${PORTFOLIO_CONTENT.contact.email}` },
       { label: 'behance', value: PORTFOLIO_CONTENT.contact.behance, href: `https://${PORTFOLIO_CONTENT.contact.behance}` },
       { label: 'linkedin', value: PORTFOLIO_CONTENT.contact.linkedin, href: `https://${PORTFOLIO_CONTENT.contact.linkedin}` },
-      { label: 'twitter', value: PORTFOLIO_CONTENT.contact.twitter, href: `https://twitter.com/${PORTFOLIO_CONTENT.contact.twitter.replace('@', '')}` },
+      { label: 'twitter', value: PORTFOLIO_CONTENT.contact.twitter, href: `https://x.com/${PORTFOLIO_CONTENT.contact.twitter.replace('@', '')}` },
       { label: 'instagram', value: PORTFOLIO_CONTENT.contact.instagram, href: `https://${PORTFOLIO_CONTENT.contact.instagram}` },
       { label: 'github', value: '@sxivansx', href: 'https://github.com/sxivansx' },
     ],

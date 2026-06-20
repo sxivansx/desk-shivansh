@@ -5,6 +5,7 @@
 export const PORTFOLIO_CONTENT = {
   name: "Shivansh",
   role: "Brand, UI/UX, and Graphic Designer, Frontend Dev",
+  status: { available: true, label: "Available for work" },
   bio: "I do Brand, UI/UX, Graphics, and Motion. I work across product design, visual systems, logos, and complete brand identities from scratch. Led event branding end-to-end covering graphics, motion intros, stage visuals, and merch. I also build digital products and websites, handling both design and frontend development.",
   coCurricular: [
     "Software Lead at Vertex — Founding member; designed the original logo and brand identity. Led the Software domain — spearheaded technical projects and built the club's website",
@@ -56,13 +57,13 @@ export const PORTFOLIO_CONTENT = {
   experience: [
     {
       company: "Remotestar",
-      role: "Product Designer & Frontend Dev",
+      role: "Product Designer (Internship)",
       highlights: [
         "Rebranded the company with a new logo, wordmark, and complete visual identity.",
-        "Designed and developed rebranded landing page from scratch in Framer with CMS integration.",
-        "Worked on candidate platform frontend development.",
-        "Designed the entire UI/UX and user flow for the new candidate platform.",
-        "Revamped the UX of the recruiter platform for improved clarity and usability.",
+        "Designed and shipped the remotestar.io landing page from scratch in Framer with CMS integration and deployment.",
+        "Owned the entire UI/UX and user flow for the candidate platform (jobs.remotestar.io) and contributed to frontend development.",
+        "Revamped the recruiter platform (ai.remotestar.io) around Kai, the in-house AI recruiter workflow.",
+        "Built marketing assets across channels.",
         "Received Values At Work Award.",
       ],
     },
@@ -85,10 +86,10 @@ export const PORTFOLIO_CONTENT = {
     },
     {
       company: "Prauga",
-      role: "Product & UI/UX Designer",
+      role: "UI/UX and Brand Designer (Internship)",
       highlights: [
         "Designed the launcher UI and full system interface for Prauga OS (PVOT-OSS).",
-        "Created UI/UX for multiple apps with a clean, minimal approach.",
+        "Designed app UI with a clean, minimal approach.",
         "Created custom iconography and a complete set of app icons.",
         "Built the complete brand identity from scratch — logo, typography, and visual language.",
         "Designed and developed the official Prauga website in Framer.",
@@ -138,6 +139,7 @@ export const PORTFOLIO_CONTENT = {
     fullName: "Shivansh Pandey",
     location: "Bengaluru, India",
     phone: "+91 9792975227",
+    resumeFile: "/resume.pdf",
     summary:
       "Designer skilled in Brand, UI/UX, Graphics, and Motion. I build brands from scratch, lead event branding end-to-end, and ship digital products handling both design and frontend development.",
     coreSkills: [
@@ -195,10 +197,10 @@ export const PORTFOLIO_CONTENT = {
   },
   codingProjects: [
     {
-      name: "portfolio2026",
+      name: "desk.shivansh",
       description: "This very site — a macOS Yosemite-themed interactive portfolio built from scratch.",
       tech: ["Next.js", "React 19", "TypeScript", "Tailwind CSS", "Tone.js"],
-      repo: "https://github.com/sxivansx/portfolio2026",
+      repo: "https://github.com/sxivansx/desk.shivansh",
     },
     {
       name: "remotestar-landing",
@@ -206,12 +208,18 @@ export const PORTFOLIO_CONTENT = {
       tech: ["Framer", "React", "CSS"],
       repo: "",
     },
+    {
+      name: "cert-generator",
+      description: "Python web app to bulk-generate certificates from a template image and CSV/XLSX data — visual field placement, custom fonts, ZIP export. Deployed on Railway.",
+      tech: ["Python", "Flask", "Pillow", "Railway"],
+      repo: "https://cert-generator-production.up.railway.app",
+    },
   ],
   contact: {
     email: "sxivansx@duck.com",
-    behance: "behance.net/sxivansx",
-    linkedin: "linkedin.com/in/sxivansx",
-    twitter: "@sxivansx",
+    behance: "behance.net/shivansh-life",
+    linkedin: "linkedin.com/in/shivansh-life",
+    twitter: "@shivansh_life",
     instagram: "instagram.com/shivansh.life",
     cal: "https://cal.com/sxivansx/30min",
     cv: "https://github.com/sxivansx/resume/blob/main/resume_shivansh_design.pdf",

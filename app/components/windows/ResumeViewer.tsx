@@ -32,9 +32,8 @@ export default function ResumeViewer() {
         <div style={{ flex: 1 }} />
         <ToolbarButton label="Print" onClick={() => window.print()} />
         <a
-          href={PORTFOLIO_CONTENT.contact.cv}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={PORTFOLIO_CONTENT.resume.resumeFile}
+          download="Shivansh-Pandey-Resume.pdf"
           style={{
             fontSize: 12,
             color: '#333',
