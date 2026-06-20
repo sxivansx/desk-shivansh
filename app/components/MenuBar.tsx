@@ -7,9 +7,11 @@ interface Props {
   isMuted: boolean
   onToggleMute: () => void
   activeApp: string
+  availability?: string | null
+  onAvailabilityClick?: () => void
 }
 
-export default function MenuBar({ isMuted, onToggleMute, activeApp }: Props) {
+export default function MenuBar({ isMuted, onToggleMute, activeApp, availability, onAvailabilityClick }: Props) {
   const [time, setTime] = useState('')
   const sound = useRetroSound()
 
@@ -96,6 +98,34 @@ export default function MenuBar({ isMuted, onToggleMute, activeApp }: Props) {
       ))}
 
       <div style={{ flex: 1 }} />
+
+      {/* Availability status */}
+      {availability && (
+        <span
+          onClick={() => {
+            sound.playClick()
+            onAvailabilityClick?.()
+          }}
+          onMouseEnter={e => {
+            sound.playHover()
+            ;(e.currentTarget as HTMLElement).style.background = 'var(--color-bg-hover)'
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLElement).style.background = 'transparent'
+          }}
+          style={{
+            padding: '2px 10px',
+            marginRight: 2,
+            cursor: 'default',
+            borderRadius: 3,
+            fontSize: 12.5,
+            color: 'var(--color-text-primary)',
+          }}
+          title="Open Contacts"
+        >
+          {availability}
+        </span>
+      )}
 
       {/* Right-side icons */}
       <button

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 interface Props {
   onComplete: () => void
@@ -11,43 +11,72 @@ export default function BootSequence({ onComplete, playBoot }: Props) {
   const [visible, setVisible] = useState(false)
   const [progress, setProgress] = useState(0)
   const [fading, setFading] = useState(false)
+  const [hintVisible, setHintVisible] = useState(false)
   const ran = useRef(false)
+  const finished = useRef(false)
+  const timers = useRef<number[]>([])
+  const interval = useRef<number | null>(null)
+
+  const finish = useCallback(() => {
+    if (finished.current) return
+    finished.current = true
+    if (interval.current !== null) clearInterval(interval.current)
+    timers.current.forEach(clearTimeout)
+    timers.current = []
+    setProgress(100)
+    setFading(true)
+    window.setTimeout(onComplete, 400)
+  }, [onComplete])
 
   useEffect(() => {
     if (ran.current) return
     ran.current = true
     playBoot()
 
-    setTimeout(() => setVisible(true), 200)
+    timers.current.push(window.setTimeout(() => setVisible(true), 200))
+    timers.current.push(window.setTimeout(() => setHintVisible(true), 1200))
+    timers.current.push(
+      window.setTimeout(() => {
+        let p = 0
+        interval.current = window.setInterval(() => {
+          p += 2
+          setProgress(Math.min(p, 100))
+          if (p >= 100 && interval.current !== null) clearInterval(interval.current)
+        }, 30)
+      }, 600),
+    )
+    timers.current.push(window.setTimeout(finish, 2800))
 
-    setTimeout(() => {
-      let p = 0
-      const iv = setInterval(() => {
-        p += 2
-        setProgress(Math.min(p, 100))
-        if (p >= 100) clearInterval(iv)
-      }, 30)
-    }, 600)
+    return () => {
+      if (interval.current !== null) clearInterval(interval.current)
+      timers.current.forEach(clearTimeout)
+    }
+  }, [playBoot, finish])
 
-    setTimeout(() => {
-      setFading(true)
-      setTimeout(onComplete, 400)
-    }, 2800)
-  }, [playBoot, onComplete])
+  // Click anywhere or press any key to skip the boot animation.
+  useEffect(() => {
+    const onKey = () => finish()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [finish])
 
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      background: '#000',
-      zIndex: 99999,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      opacity: fading ? 0 : 1,
-      transition: 'opacity 0.4s ease-out',
-    }}>
+    <div
+      onClick={finish}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: '#000',
+        zIndex: 99999,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        opacity: fading ? 0 : 1,
+        transition: 'opacity 0.4s ease-out',
+        cursor: 'pointer',
+      }}
+    >
       {visible && (
           <div style={{ animation: 'scaleIn 0.3s ease-out', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {/* Apple logo */}
@@ -79,6 +108,20 @@ export default function BootSequence({ onComplete, playBoot }: Props) {
           </div>
         </div>
       )}
+
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 40,
+          color: 'rgba(255, 255, 255, 0.35)',
+          fontSize: 12,
+          letterSpacing: 0.2,
+          opacity: hintVisible && !fading ? 1 : 0,
+          transition: 'opacity 0.4s ease-out',
+        }}
+      >
+        Click anywhere to skip
+      </div>
     </div>
   )
 }
